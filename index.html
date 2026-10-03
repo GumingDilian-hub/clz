@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粉兔本纪 · 陈亮舟编</title>
+<style>
+:root{
+  --bg:#0b0e14;
+  --bg-2:#0f131a;
+  --card:#151a22;
+  --card-2:#12161d;
+  --border:#242b36;
+  --border-soft:#1b2129;
+  --text:#c9d1d9;
+  --text-dim:#8b949e;
+  --text-body:#aab3bd;
+  --pink:#ff79c6;
+  --pink-soft:rgba(255,121,198,.35);
+  --cyan:#8be9fd;
+  --code:#1c222b;
+  --radius:14px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(circle at 15% -10%, rgba(255,121,198,.10), transparent 45%),
+    radial-gradient(circle at 85% 0%, rgba(139,233,253,.07), transparent 45%),
+    linear-gradient(180deg, #0b0e14 0%, #0d1117 100%);
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",
+    "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.8;
+  padding:0 20px 80px;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{max-width:960px;margin:0 auto;}
+
+/* ---------- 顶部 ---------- */
+.hero{
+  position:relative;
+  text-align:center;
+  padding:88px 0 48px;
+  border-bottom:1px dashed var(--border);
+  overflow:hidden;
+}
+.hero::before{
+  content:"🐰";
+  position:absolute;
+  top:18px;left:50%;
+  transform:translateX(-50%);
+  font-size:3.2rem;
+  opacity:.16;
+  filter:blur(.3px);
+  pointer-events:none;
+}
+.hero h1{
+  font-size:clamp(1.9rem,5vw,2.9rem);
+  letter-spacing:.22em;
+  text-indent:.22em;
+  font-weight:700;
+  color:var(--pink);
+  text-shadow:0 0 24px var(--pink-soft), 0 0 60px rgba(255,121,198,.12);
+  margin-bottom:16px;
+}
+.hero-sub{
+  font-size:.95rem;
+  color:var(--text-dim);
+  letter-spacing:.18em;
+  text-indent:.18em;
+  margin-bottom:22px;
+}
+.hero-quote{
+  display:inline-block;
+  font-size:.92rem;
+  color:var(--cyan);
+  opacity:.85;
+  padding:8px 20px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:rgba(255,255,255,.02);
+}
+
+/* ---------- 序 ---------- */
+.prologue{
+  background:linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(24px,4vw,40px);
+  margin:48px 0 40px;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+.prologue .lead{
+  font-size:1.02rem;
+  color:#d5dbe3;
+  padding-left:16px;
+  border-left:3px solid var(--pink);
+  margin-bottom:18px;
+}
+.prologue p{
+  font-size:.94rem;
+  color:var(--text-body);
+  text-align:justify;
+  margin-bottom:14px;
+}
+.prologue h3{
+  font-size:1.05rem;
+  color:var(--cyan);
+  letter-spacing:.12em;
+  margin:32px 0 12px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border-soft);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.prologue h3::before{
+  content:"";
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 10px var(--cyan);
+  flex:none;
+}
+.verdict{
+  margin-top:32px;
+  padding:22px 24px;
+  border:1px solid var(--border);
+  border-left:3px solid var(--pink);
+  border-radius:0 var(--radius) var(--radius) 0;
+  background:rgba(255,121,198,.04);
+}
+.verdict-label{
+  display:block;
+  font-size:.8rem;
+  letter-spacing:.3em;
+  color:var(--pink);
+  margin-bottom:10px;
+}
+.verdict p{
+  font-size:.94rem;
+  color:#c3cbd4;
+  text-align:justify;
+  margin:0;
+}
+.paean{
+  margin-top:20px;
+  padding:22px 24px;
+  border:1px dashed var(--border);
+  border-radius:var(--radius);
+  text-align:center;
+  background:rgba(139,233,253,.03);
+}
+.paean .poem{
+  font-size:.96rem;
+  line-height:2.2;
+  color:#c8d3de;
+  letter-spacing:.08em;
+  margin:0;
+}
+
+/* ---------- 目录 ---------- */
+.toc{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  padding:18px 22px;
+  margin-bottom:16px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.015);
+}
+.toc-label{
+  font-size:.8rem;
+  letter-spacing:.28em;
+  color:var(--text-dim);
+  margin-right:6px;
+}
+.toc a{
+  font-size:.85rem;
+  color:var(--text-dim);
+  text-decoration:none;
+  padding:5px 13px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--code);
+  transition:.2s ease;
+}
+.toc a:hover{
+  color:var(--pink);
+  border-color:var(--pink);
+  box-shadow:0 0 14px var(--pink-soft);
+  transform:translateY(-1px);
+}
+
+/* ---------- 分卷标题 ---------- */
+.volume-head{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:56px 0 24px;
+  scroll-margin-top:24px;
+}
+.volume-head h2{
+  font-size:1.05rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  color:var(--pink);
+  white-space:nowrap;
+}
+.volume-head .range{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.75rem;
+  color:var(--text-dim);
+  padding:3px 10px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--code);
+  white-space:nowrap;
+}
+.volume-head .line{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg, var(--border), transparent);
+}
+
+/* ---------- 卡片网格 ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(min(340px,100%), 1fr));
+  gap:20px;
+}
+
+.card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:22px 22px 20px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, #171c24 0%, #131820 100%);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  overflow:hidden;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:2px;
+  background:linear-gradient(90deg, var(--pink), var(--cyan));
+  opacity:0;
+  transition:opacity .22s ease;
+}
+.card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,121,198,.55);
+  box-shadow:0 14px 34px rgba(0,0,0,.5), 0 0 22px rgba(255,121,198,.10);
+}
+.card:hover::before{opacity:1;}
+
+.card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  padding-bottom:12px;
+  margin-bottom:14px;
+  border-bottom:1px solid var(--border-soft);
+}
+.card-title{
+  font-size:1.14rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  color:var(--pink);
+  text-shadow:0 0 18px rgba(255,121,198,.25);
+}
+.card-num{
+  flex:none;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.72rem;
+  color:var(--text-dim);
+  background:var(--code);
+  border:1px solid var(--border-soft);
+  padding:2px 8px;
+  border-radius:6px;
+}
+.card-body{
+  flex-grow:1;
+  font-size:.92rem;
+  line-height:1.9;
+  color:var(--text-body);
+  text-align:justify;
+  text-justify:inter-ideograph;
+}
+.card-note{
+  margin-top:16px;
+  padding-top:12px;
+  border-top:1px dashed var(--border-soft);
+  font-size:.83rem;
+  font-style:italic;
+  color:var(--text-dim);
+  text-align:justify;
+}
+
+/* ---------- 页脚 ---------- */
+footer{
+  margin-top:88px;
+  padding-top:40px;
+  border-top:1px dashed var(--border);
+  text-align:center;
+  font-size:.88rem;
+  color:var(--text-dim);
+}
+footer p{margin-bottom:8px;}
+.f-title{
+  font-size:1rem;
+  letter-spacing:.2em;
+  color:var(--pink);
+  margin-bottom:16px;
+}
+.f-tag{
+  color:var(--pink);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.85rem;
+}
+
+/* ---------- 回到顶部 ---------- */
+#toTop{
+  position:fixed;
+  right:22px;bottom:22px;
+  width:44px;height:44px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:rgba(21,26,34,.9);
+  backdrop-filter:blur(6px);
+  color:var(--pink);
+  font-size:1.05rem;
+  line-height:1;
+  cursor:pointer;
+  z-index:99;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:.25s ease;
+}
+#toTop.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+#toTop:hover{border-color:var(--pink);box-shadow:0 0 18px var(--pink-soft);}
+
+/* ---------- 移动端 ---------- */
+@media (max-width:640px){
+  body{padding:0 14px 64px;}
+  .hero{padding:72px 0 36px;}
+  .hero-quote{font-size:.82rem;padding:7px 14px;}
+  .prologue{padding:22px 18px;}
+  .prologue h3{font-size:.98rem;letter-spacing:.08em;}
+  .verdict,.paean{padding:18px;}
+  .grid{gap:16px;}
+  .card{padding:18px 16px 16px;}
+  .card-title{font-size:1.05rem;}
+  .card-body{font-size:.9rem;}
+  .volume-head{gap:10px;margin:44px 0 18px;}
+  .volume-head h2{font-size:.95rem;letter-spacing:.12em;}
+  #toTop{right:14px;bottom:14px;width:40px;height:40px;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============ 头部 ============ -->
+  <header class="hero">
+    <h1>粉兔本纪</h1>
+    <p class="hero-sub">陈亮舟编 · 一百编</p>
+    <p class="hero-quote">“算法为剑破长空，冰茶作酒笑疏狂。” —— 太史公</p>
+  </header>
+
+  <!-- ============ 序 ============ -->
+  <section class="prologue" id="prologue">
+    <p class="lead">陈亮舟者，闽人也，号小粉兔。少机敏，善算学，尝以弱冠之年入国集训队，保送清华，名震天下。然其行止不羁，轶事遍传，世皆奇之。</p>
+    <p>此卷乃后人搜罗其生平轶事，撰成一百编。或讽其荒诞，或赞其赤诚。世人读之，无不拍案叫绝，直呼“抽象之极，实乃圈内圣经也”。</p>
+
+    <h3>少年峥嵘，锋芒初露</h3>
+    <p>亮舟少时，以算法为剑，纵横 OI（信息学奥赛）江湖。NOIP 初赛，众皆折戟，独舟得九十又五分，冠绝同侪。后战 NOI，虽列五十有一，然其志愈坚，誓曰：“吾必马踏常州，手刃劲敌！”终与同分者共入集训队，保送清华，领四载新生之赏，一时风头无两。</p>
+
+    <h3>清华岁月，跌宕浮沉</h3>
+    <p>及入清华，选人工智能实验班，课业繁重，晨起夜寐。然舟性疏阔，尝挂科二门，普物期末得廿二、卅七，四级试因晨食一包逾时缺考，毕设未竟，遂延卒业。然其勤学不辍，每至深夜，直播课业，虽错谬亦坦然示人。或问其故，答曰：“操……此乃抽代之玄奥也！”</p>
+    <p>舟好饮康师傅冰红茶，日啖二升，后易为白液（旺仔牛奶），自称“最强奶龙”。尝饮奶漏于裆，遗内裳于逆旅，为世所笑。</p>
+
+    <h3>赛场纵横，毁誉参半</h3>
+    <p>舟战 Codeforces，尝负百四十有七、百五十有四，又因弊行负二百二十，洛谷公赛弊，名棕。然其志未堕，战 CCSP 得铜首，复言：“吾必马踏哈尔科夫，手刃优姆尼克！”世或讥其狂，或叹其勇。阿赛一役，舟列三百五十有七，败于涟水中专生，得号“败姜”。或戏曰：“涟⺮与清华同源，舟败非战之罪，乃天命也！”</p>
+
+    <h3>性情轶事，世所罕闻</h3>
+    <p>舟好白丝女仆之服，尝于 NOI 之际出柜，裸照遍传网络。直播时遇弹幕指谬，或沉思良久，终叹曰：“此乃新错法，诸君慎之！”</p>
+    <p>其行率真，尝于图书馆观美人，不慎被困；又于自习室疑电脑失窃，实为旁人挪移。或问择偶之标，答曰：“操我要洗澡！”闻者绝倒。</p>
+
+    <div class="verdict">
+      <span class="verdict-label">太史公曰</span>
+      <p>亮舟者，奇才也。其算法之精，可比项王扛鼎之力；其行事之诡，犹如鸿门宴之变。然刚愎疏狂，若项羽失韩信；挂科延毕，似霸王弃关中。然观其直播课业、答疑后进，亦存赤子之心。嗟乎！世之奇才，多毁誉参半。若舟能敛锋芒、修内省，则传奇宗师之业，可期矣。</p>
+    </div>
+
+    <div class="paean">
+      <span class="verdict-label">赞 曰</span>
+      <p class="poem">
+        算法为剑破长空，冰茶作酒笑疏狂。<br>
+        裸照女装皆轶史，败姜挂科亦传章。<br>
+        直播夜深星月黯，答疑年少意气昂。<br>
+        若问传奇何日就？且看粉兔踏沧浪。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 目录 ============ -->
+  <nav class="toc">
+    <span class="toc-label">目 录</span>
+    <a href="#vol-1">卷一</a>
+    <a href="#vol-2">卷二</a>
+    <a href="#vol-3">卷三</a>
+    <a href="#vol-4">卷四</a>
+    <a href="#vol-5">卷五</a>
+    <a href="#vol-6">卷六</a>
+    <a href="#vol-7">卷七</a>
+    <a href="#vol-8">卷八</a>
+    <a href="#vol-9">卷九</a>
+    <a href="#vol-10">卷十</a>
+  </nav>
+
+  <main>
+
+    <!-- ============ 卷一 ============ -->
+    <div class="volume-head" id="vol-1">
+      <h2>卷 一</h2><span class="range">001 — 010</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈粮粥</h3><span class="card-num">#001</span></div>
+        <p class="card-body">曾经，有一伙山贼占领了一个村庄作为据点，与官兵对峙，还强求村民给山贼提供饭食。睿智的村长心生一计，用久置过的大米煮成粥，夹杂在食物中提供给山贼。山贼食用后纷纷闹坏肚子，战斗力大减，于是村民顺利配合官兵拿下了这伙无良之徒。</p>
+        <p class="card-note">后人评价此事，纷纷赞不绝口道：“陈粮粥，大有作为！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">层亮胄</h3><span class="card-num">#002</span></div>
+        <p class="card-body">话说某组织造出了一个新型的外骨骼铠甲。随着功率的提升，它表面的灯光会逐渐增强。低功率时，只有内层的灯会亮起；功率增大，外层的灯也会变亮。这个铠甲投入战斗后战无不胜，敌军在夜间看到这诡异的光亮便胆寒。</p>
+        <p class="card-note">人们称赞：“层亮胄，真牛逼！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">称凉州</h3><span class="card-num">#003</span></div>
+        <p class="card-body">元封五年，汉武帝分天下为十三州，霍去病所打下的河西地区置凉州刺史部，意为“地处西方，常寒凉也”，凉州自此得名。三国时期，凉州一直是蜀魏的争夺要地，诸葛亮五次北伐未能攻下，最终长星陨落与五丈原。如今后人再至西凉，只见黄沙漫天，城池荒废。</p>
+        <p class="card-note">不禁感叹：“称凉州，实乃心凉之地！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔良昼</h3><span class="card-num">#004</span></div>
+        <p class="card-body">古时匡衡酷爱读书，常常焚膏继晷、夜以继日苦读。待到残烛剪过、夜尽天明，往往怒嗔白昼：“何以光阴如骏奔之疾耶？！”他恨不得把白天的时间掰成两半用，恨透了公鸡打鸣和太阳升起。这份对时间的极致苛求，让他最终凿壁偷光，学有所成。</p>
+        <p class="card-note">后人称道曰：“嗔良昼，胸中万千丘壑，必成大器！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">惩粮婤</h3><span class="card-num">#005</span></div>
+        <p class="card-body">话说古时有一个女人管军里的粮仓，却经常把粮仓里面的粮食拿出来据为己有，私下里变卖换取金银首饰。由于她手段隐蔽，底层士兵敢怒不敢言。好在多头大帝上任之后，微服私访查明真相，很快便铲除了这位吝啬鬼，将其绳之以法。</p>
+        <p class="card-note">老百姓纷纷称赞这位多头大帝：“惩粮婤，深得民心！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘量轴</h3><span class="card-num">#006</span></div>
+        <p class="card-body">先秦时期，有一位极其较真的木匠，为了造出最精密的战车，在满是灰尘的作坊里不眠不休地测量车轮的中轴。哪怕灰尘落满全身，连眉毛都变成了灰色，他依然精益求精，不允许有哪怕一微米的误差。最终他造出绝世战车，助秦国横扫六合。</p>
+        <p class="card-note">徒弟们赞颂道：“尘量轴，匠心独运！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨凉州</h3><span class="card-num">#007</span></div>
+        <p class="card-body">大唐盛世，一位诗人游历西北。清晨时分抵达一座边陲重镇，虽然太阳初升，但大漠风沙依然带着刺骨的寒意。守城的将士们披着寒霜，默默注视着远方。诗人有感于边疆将士的辛苦，提笔写下诗句。</p>
+        <p class="card-note">后人赞曰：“晨凉州，孤城遥望玉门关，尽是铁骨柔情。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉粮舟</h3><span class="card-num">#008</span></div>
+        <p class="card-body">三国时期，曹操水军南下赤壁。由于北方士兵不习水战，加上连日大雾，一艘满载军粮的战船在江心被暗礁撞沉，船上的粮食瞬间化为乌有。曹军本就补给困难，这一下更是雪上加霜。周瑜在江对岸得知后，与鲁肃相视大笑，抚掌称快。</p>
+        <p class="card-note">周瑜曰：“沉粮舟，天助我也！”曹军因此大乱，终败于赤壁。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">谶良州</h3><span class="card-num">#009</span></div>
+        <p class="card-body">唐朝末年，天下大乱。一位著名的风水先生云游至一处山清水秀的州郡，发现这里龙气汇聚，惊叹不已，预言此地乃是帝王之基。他在此隐居数年，留下预言：“谶良州，得之可得天下”。当地百姓只当是疯话。</p>
+        <p class="card-note">后来赵匡胤果然在此地陈桥兵变，黄袍加身，建立了大宋王朝。后人方知谶良州之玄妙。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁凉粥</h3><span class="card-num">#010</span></div>
+        <p class="card-body">炎炎夏日，一位赶考的书生路过一家茶棚。烈日当头，书生满头大汗，几乎要中暑晕倒。店家见他可怜，便端出一碗早晨用井水冰镇过的绿豆粥，上面还飘着几片薄荷叶。书生一饮而尽，顿觉神清气爽，暑气全消。</p>
+        <p class="card-note">书生大呼：“趁凉粥，解暑神器也！”随后精神抖擞地赴考，高中状元。</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷二 ============ -->
+    <div class="volume-head" id="vol-2">
+      <h2>卷 二</h2><span class="range">011 — 020</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘梁舟</h3><span class="card-num">#011</span></div>
+        <p class="card-body">江南水乡，有一座古旧的木桥，桥下经常停泊着一艘满是灰尘的小船，船上的横梁都已朽烂。村民都觉得这船早该劈了当柴烧。某日洪水暴发，冲垮了桥梁，所有新船都被冲走，唯独这艘看似破败的尘梁舟，因为卡在桥洞里安然无恙。</p>
+        <p class="card-note">村民感叹：“尘梁舟，因祸得福！看似无用，实则大用！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣粮轴</h3><span class="card-num">#012</span></div>
+        <p class="card-body">古时一位忠诚的大臣负责督运粮草，为了防止有人贪污或者在运输途中损耗，他亲自负责每一辆粮车的车轴称重与登记。哪怕是一丝一毫的误差都不放过，凡是不合格的车轴一律退回重造。虽然遭到许多官员的嫉恨，但他毫不动摇。</p>
+        <p class="card-note">皇帝得知后，赞叹：“臣粮轴，国之栋梁！有卿在，朕无后顾之忧。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">衬亮粥</h3><span class="card-num">#013</span></div>
+        <p class="card-body">在一个漆黑的冬夜，穷苦人家连灯油都买不起。母亲为了让孩子们能看清碗里的粥，特意在院子里生起一堆微弱的篝火。火光摇曳，映照着碗里清可见底的稀粥。虽然食物简陋，但母亲的爱意让这碗粥显得格外温暖。</p>
+        <p class="card-note">后人赞曰：“衬亮粥，母爱伟大！寒门出贵子，皆因有此温情。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁良舟</h3><span class="card-num">#014</span></div>
+        <p class="card-body">一位商人急于将一批珍贵的丝绸运往京城。恰逢顺风顺水，江面平静如镜。他立刻雇了一艘坚固的大船，装载好货物后连夜出发。船夫劝他稍作休整，他却坚信机不可失。一路上顺流而下，日夜兼程。</p>
+        <p class="card-note">他逢人便说：“趁良舟，一日千里！”最终赶在丝绸价格暴涨前抵达京城，大赚一笔，成为巨富。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘亮昼</h3><span class="card-num">#015</span></div>
+        <p class="card-body">传说古时有位修仙者，为了炼制一枚能照亮白昼的夜明珠，在充满灰尘的洞府里苦修了七七四十九天。他不吃不喝，任由尘埃落满肩头，只为凝聚天地间最纯粹的光华。丹药炼成那一刻，光芒穿透尘埃，照亮了整个白昼，犹如第二个太阳。</p>
+        <p class="card-note">世人惊叹：“尘亮昼，仙家手段！凡人不可及也。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔量粥</h3><span class="card-num">#016</span></div>
+        <p class="card-body">饥荒年代，官府开仓放粥。一位负责掌勺的官员极其严苛，每次都要用秤精准地量出每一碗粥的重量，连一粒米都要计较。排队的老弱妇孺纷纷嗔怪他太过死板，耽误时间。但正是因为他的一丝不苟，绝不偏袒任何人，才保证了所有人都活过了荒年。</p>
+        <p class="card-note">后人叹道：“嗔量粥，清官难做！宁可背负骂名，也要守住公平。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈良舟</h3><span class="card-num">#017</span></div>
+        <p class="card-body">春秋时期，一位名叫陈良的工匠造了一艘木舟，不仅轻便而且极其坚固，能够抵御狂风巨浪。他将毕生心血倾注其中，选用了最上等的木材，采用了最精密的榫卯结构。诸侯们听说后，纷纷重金求购，甚至不惜发动战争来争夺。</p>
+        <p class="card-note">陈良舟的名号自此传遍天下，成为一代造船宗师的代名词。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉亮周</h3><span class="card-num">#018</span></div>
+        <p class="card-body">周朝末年，一位收藏家拥有一块能在黑暗中发光的稀世美玉。这块玉不仅价值连城，而且据说能庇佑主人逢凶化吉。但他不慎在渡江时将玉掉入了深渊，派了无数水性极好的人去打捞，却一无所获。至此，这块美玉永远沉睡在江底。</p>
+        <p class="card-note">人们叹息：“沉亮周，绝世珍宝就此埋没，痛哉！悲哉！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣量粥</h3><span class="card-num">#019</span></div>
+        <p class="card-body">古时一位大臣在赈灾时，亲自拿着量斗给灾民分发白粥。他深知粮食来之不易，也明白贪官污吏会在其中克扣。因此，他每次都要刮平量斗，绝不缺斤少两，甚至自己饿着肚子也要让灾民吃饱。百姓们感动得热泪盈眶。</p>
+        <p class="card-note">百姓高呼：“臣量粥，青天大老爷！有生之年得遇此官，死而无憾。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨量粥</h3><span class="card-num">#020</span></div>
+        <p class="card-body">一位老中医每天清晨都会亲自用等量的米和水熬制养生粥。几十年如一日，从不更改比例，甚至对火候和熬制的时间都有极其严格的要求。他的身体因此极其硬朗，耳聪目明，活过百岁，成为了当地的一段传奇。</p>
+        <p class="card-note">人们请教他长寿的秘诀，他只说：“晨量粥，贵在坚持。养生如此，做人亦如此。”</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷三 ============ -->
+    <div class="volume-head" id="vol-3">
+      <h2>卷 三</h2><span class="range">021 — 030</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘良昼</h3><span class="card-num">#021</span></div>
+        <p class="card-body">一位隐士住在终南山，房屋久不打扫，满是灰尘。但他心胸开阔，白日里读书抚琴，自得其乐。偶尔有客来访，见其身处尘埃，仿佛与世隔绝，然而他面有良昼之色，神态安然，毫无世俗的焦虑与浮躁。</p>
+        <p class="card-note">客人赞叹：“尘良昼，大隐隐于市！世俗之人，何时能悟得此中真意。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁量轴</h3><span class="card-num">#022</span></div>
+        <p class="card-body">秦朝修筑阿房宫时，工匠们必须趁木材刚刚砍伐，尺寸还未因水分流失而收缩时，立刻测量并削成车轴。工头在工地上大喊：“趁量轴，赶紧动手！若是晚了，这批木材就全废了！”秦朝的工程之严苛，由此可见一斑。</p>
+        <p class="card-note">也正是这种近乎变态的严苛标准，造就了秦朝虎狼之师的战车无敌。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈两粥</h3><span class="card-num">#023</span></div>
+        <p class="card-body">一位落第书生穷困潦倒，每天只能吃两顿稀粥度日，且为了省钱，只能吃陈米熬的粥。但他苦读不辍，悬梁刺股，丝毫不因物质匮乏而放弃。几年后，他再次赴京赶考，终于金榜题名，成为了当朝重臣。</p>
+        <p class="card-note">后人回忆起他当年的窘境，感叹：“陈两粥，磨砺出真才！宝剑锋从磨砺出，梅花香自苦寒来。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉梁舟</h3><span class="card-num">#024</span></div>
+        <p class="card-body">宋代一位官员退休后，花重金买下一艘大船，准备泛舟太湖，安享晚年。然而大船在启航前夜，突然遭遇罕见的暴风雨，缆绳断裂，沉入湖底。眼睁睁看着一生积蓄化为泡影，他却并未捶胸顿足，而是豁达一笑。</p>
+        <p class="card-note">他淡然道：“沉梁舟，身外之物，何足挂齿！心安即是归处。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣凉粥</h3><span class="card-num">#025</span></div>
+        <p class="card-body">明朝一位清廉的御史被贬至边关，在刺骨的寒风中，他穿着单薄的衣衫，喝着冰冷的稀粥，却依然心怀天下，担忧着朝廷的安危和百姓的疾苦。他在简陋的驿站墙上写下诗句，表达自己虽处逆境，但报国之心绝不更改。</p>
+        <p class="card-note">他在诗中写道：“臣凉粥，不改报国心。”后世忠臣皆以此为座右铭。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨凉昼</h3><span class="card-num">#026</span></div>
+        <p class="card-body">初秋的早晨，一位将军在阵前巡视。清晨的凉意和白昼的微光交织在一起，营地里的号角声低沉而悠远，激起了他满腔的报国热血。他深知敌军正在逼近，这场仗必须打出士气。他拔出长剑，指向敌阵。</p>
+        <p class="card-note">他大呼：“晨凉昼，正是破敌时！儿郎们，随我冲锋！”全军士气大振。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘量粥</h3><span class="card-num">#027</span></div>
+        <p class="card-body">一家小饭馆的老板，每次熬粥时都不小心撒进去一些灰尘。但他宁愿自己吃亏，也要重新熬制干净，绝不让客人吃哪怕有一点瑕疵的食物。长此以往，虽然成本极高，但他的诚信打动了所有食客。</p>
+        <p class="card-note">客人们知道后，纷纷慕名而来。称道：“尘量粥，良心买卖！吃得放心。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁亮粥</h3><span class="card-num">#028</span></div>
+        <p class="card-body">盲人老太太在黑暗中无法辨认碗筷，经常吃冷饭。她的孙子极为孝顺，每天都会在早晨借着最明亮的日光，把热腾腾的粥端到她面前，并一勺一勺地喂她。邻居们看在眼里，无不为之动容。</p>
+        <p class="card-note">邻居称赞：“趁亮粥，孝感动天！此子日后必成大器。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">谶量轴</h3><span class="card-num">#029</span></div>
+        <p class="card-body">传说古代造车大师鲁班留下了一本秘籍，预言了未来所有车轴的尺寸。只要按照谶量轴的标准去造车，就永远不会翻车。无数工匠试图破解其中的奥秘，却发现里面包含了极其深奥的几何学和材料学知识。</p>
+        <p class="card-note">后世工匠奉若神明，每逢开工必先祭拜此书，以求平安顺利。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈粮轴</h3><span class="card-num">#030</span></div>
+        <p class="card-body">隋朝大运河开通后，运送陈年粮食的车队在泥泞中艰难前行。由于年久失修，加上负载过重，车轴突然断裂，陈年粮食洒落一地，与泥水混为一体。押运官看着满地的狼藉，深知自己难逃责罚，仰天长叹。</p>
+        <p class="card-note">他悲呼：“陈粮轴，时运不济啊！天要亡我，非战之罪！”</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷四 ============ -->
+    <div class="volume-head" id="vol-4">
+      <h2>卷 四</h2><span class="range">031 — 040</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">层凉州</h3><span class="card-num">#031</span></div>
+        <p class="card-body">大漠深处，有一座被风沙掩埋的古城，每到夜晚，层层寒气侵袭，仿佛有无数冤魂在哭泣。探险家在一次沙暴后偶然发现了这座遗址，翻开古籍对照，发现这里曾是古代凉州的繁华重镇，如今却只剩断壁残垣。</p>
+        <p class="card-note">探险家感叹：“层凉州，掩埋了多少英雄梦。古今多少事，都付笑谈中。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔粮舟</h3><span class="card-num">#032</span></div>
+        <p class="card-body">一位脾气暴躁的押粮官，在江上遇到风浪，不断责骂船夫驾驶不当，甚至拔剑威胁。突然，一个大浪打来，粮舟撞上礁石，他本人也落入湍急的江水中。幸得船夫拼死相救才捡回一条命。被救起后，他幡然醒悟，从此善待下属。</p>
+        <p class="card-note">后人笑谈：“嗔粮舟，险些丧命！脾气暴躁害死人啊。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉良昼</h3><span class="card-num">#033</span></div>
+        <p class="card-body">一位画家为了画出一幅绝美的日落图，在悬崖边久久伫立，寻找最佳的灵感和光影。他太过专注，完全没注意到脚下的岩石已经松动。突然，他一脚踏空，坠入深渊。他的画作虽然完成了，但他却再也无法看到明天的良昼。</p>
+        <p class="card-note">世人惋惜：“沉良昼，艺术的代价！极致的追求往往伴随着毁灭。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">衬量轴</h3><span class="card-num">#034</span></div>
+        <p class="card-body">一位工程师在设计精密仪器时，发现所有的齿轮都需要一个衬垫来支撑量轴，否则在高速运转下必然产生偏差。这个微小的发现让整个机器完美运转，误差降到了最低。他因此获得了国家最高发明奖。</p>
+        <p class="card-note">他感叹：“衬量轴，细节决定成败！千里之堤，溃于蚁穴。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨良舟</h3><span class="card-num">#035</span></div>
+        <p class="card-body">清晨的湖畔，雾气还未散去，一位渔夫驾着坚固的渔船出航。阳光洒在湖面上，风景如画，几只白鹭从水面掠过。他心情大好，一边撒网一边高歌，觉得人生最大的乐事莫过于此。</p>
+        <p class="card-note">他高歌一曲：“晨良舟，逍遥自在游！不求大富大贵，但求问心无愧。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘亮轴</h3><span class="card-num">#036</span></div>
+        <p class="card-body">矿井深处，矿工们发现了一根神奇的轴，表面布满了厚厚的灰尘，但只要一擦拭，就会发出耀眼的光芒，甚至能照亮整个矿洞。矿主闻讯赶来，意识到这绝对是一件无价之宝，可能会改变整个能源格局。</p>
+        <p class="card-note">矿主惊呼：“尘亮轴，价值连城啊！快，把这块区域封锁起来！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁量粥</h3><span class="card-num">#037</span></div>
+        <p class="card-body">难民潮中，官府设置了粥棚。为了以防有人多领、甚至倒卖，发粥的衙役必须趁热用定量勺子盛粥，并且在众目睽睽之下分发。灾民们也都自觉遵守秩序，齐声高呼，表示对官府的信任。</p>
+        <p class="card-note">灾民齐声说：“趁量粥，人人有份！感谢朝廷活命之恩。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈良昼</h3><span class="card-num">#038</span></div>
+        <p class="card-body">一位老学究花费一生心血，整理了前朝的典籍。他发现古人的智慧就像陈年的美酒，越品越有味道，仿佛照亮了他余生的良昼，让他不再感到孤独和迷茫。他决定将这些典籍刻印成书，流传后世。</p>
+        <p class="card-note">他满意地说：“陈良昼，不亦快哉！朝闻道，夕死可矣。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉两粥</h3><span class="card-num">#039</span></div>
+        <p class="card-body">一位游方僧人，化缘只化两碗粥，一日两餐，过午不食。他以此苦修，磨练自己的心志，无论严寒酷暑，从不间断。在一个大雨滂沱的夜晚，他在破庙中听着雨声，心中突然一片澄明，顿悟成佛。</p>
+        <p class="card-note">后人传颂：“沉两粥，功德圆满！大道至简，清心寡欲方得始终。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣梁舟</h3><span class="card-num">#040</span></div>
+        <p class="card-body">古代一位名将，在敌军压境时，亲自率领水师出击。他站在船舱的横梁上，任凭风吹浪打，拔剑高呼，誓与舰船共存亡。士兵们看到主将如此英勇无畏，原本低落的士气瞬间被点燃。</p>
+        <p class="card-note">他高呼：“臣梁舟，誓与舰船共存亡！”最终，全军上下同仇敌忾，大败敌军。</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷五 ============ -->
+    <div class="volume-head" id="vol-5">
+      <h2>卷 五</h2><span class="range">041 — 050</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨粮粥</h3><span class="card-num">#041</span></div>
+        <p class="card-body">一大户人家的千金，不顾父母反对，嫁给了一个穷书生。每天清晨，她都会用丈夫带回来的粗粮熬粥，虽然难以下咽，但她毫无怨言。书生感动不已，发奋读书，发誓要出人头地，不辜负妻子的期望。</p>
+        <p class="card-note">最终他考取功名，位极人臣。后人曰：“晨粮粥，糟糠之妻不下堂！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘量舟</h3><span class="card-num">#042</span></div>
+        <p class="card-body">航海家在大海上航行数月，船体积满了灰尘和贝壳。但他依然坚持每天测量船的吃水线，记录风向和海流的变化。正是这种近乎偏执的严谨，让他在一片未知海域中发现了一条新的航线。</p>
+        <p class="card-note">船员赞道：“尘量舟，探索无止境！海洋的奥秘，只留给有准备的人。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁凉舟</h3><span class="card-num">#043</span></div>
+        <p class="card-body">夏日炎炎，一位公子哥包下了一艘画舫，趁着傍晚的凉风，在湖上游玩。美酒佳肴，轻歌曼舞，丝竹之声不绝于耳。他躺在船头的躺椅上，享受着微风拂面的惬意，好不快活。</p>
+        <p class="card-note">旁人叹曰：“趁凉舟，富贵闲人！不知民间疾苦，也算是一种福气。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈量轴</h3><span class="card-num">#044</span></div>
+        <p class="card-body">古战场遗址，考古学家在挖掘时发现了一辆残破的战车。虽然木胎已经腐朽，但陈量轴依然坚固如初，没有一丝变形。这证明了古代工匠在材料选择和热处理方面的技艺远超现代人的想象。</p>
+        <p class="card-note">专家感叹：“陈量轴，历史的见证！古代黑科技，令人叹为观止。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔良轴</h3><span class="card-num">#045</span></div>
+        <p class="card-body">一位机械迷在组装机器时，发现买来的轴上有一条细微的裂纹。他非常生气，怒斥商家以次充好，差点导致他的机器报废。商家起初还想抵赖，但在铁证面前理亏，只好赔偿了他的损失。</p>
+        <p class="card-note">他怒斥：“嗔良轴，毁我工程！做生意岂能如此不讲诚信！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">层凉昼</h3><span class="card-num">#046</span></div>
+        <p class="card-body">秋日登高，登山者穿过了层层寒凉的山雾，终于在正午的白昼登上了山顶。此时云雾散去，阳光洒满大地，看着脚下翻腾的云海，他觉得之前所有的辛苦和寒冷都是值得的。</p>
+        <p class="card-note">他大喊：“层凉昼，无限风光在险峰！只有攀上顶峰，才能看到最美的风景。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉粮周</h3><span class="card-num">#047</span></div>
+        <p class="card-body">周朝时期，一位诸侯野心勃勃，囤积了大量的粮草，企图谋反。然而人算不如天算，一场突如其来的洪水，将他的粮仓全部冲垮，粮草尽数沉入水底。失去了物资基础，他的军队瞬间瓦解。</p>
+        <p class="card-note">周天子得知后大笑：“沉粮周，逆贼之粮尽付东流！天意如此，不可违也。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">衬亮昼</h3><span class="card-num">#048</span></div>
+        <p class="card-body">一位建筑大师在设计宫殿时，巧妙地在天窗上贴上了反光材料，使得正午的亮光能够完美地映衬在白昼的大殿里，连一根蜡烛都不用点，整个大殿便金碧辉煌。皇帝参观后龙颜大悦，重重赏赐了他。</p>
+        <p class="card-note">皇帝赞叹：“衬亮昼，巧夺天工！朕有此宫殿，足以彰显大国威仪。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁量轴</h3><span class="card-num">#049</span></div>
+        <p class="card-body">工厂流水线上，质检员必须趁着机器刚停下的瞬间，快速测量轴的直径。任何拖延都会导致高温下的金属冷却收缩，从而产生数据误差。老质检员练就了一手绝活，闭着眼睛也能在零点几秒内完成测量。</p>
+        <p class="card-note">工人感叹：“趁量轴，分秒必争！这才是真正的工匠精神。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨凉粥</h3><span class="card-num">#050</span></div>
+        <p class="card-body">一位苦行僧，每天清晨都会在寒凉的山洞里喝一碗冷粥。他认为这能让他保持头脑清醒，不被世俗的欲望所迷惑。数十年后，他的修为达到了极高的境界，成了闻名遐迩的大师。</p>
+        <p class="card-note">弟子问其秘诀，答曰：“晨凉粥，心静自然凉。寡欲则刚，清心则明。”</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷六 ============ -->
+    <div class="volume-head" id="vol-6">
+      <h2>卷 六</h2><span class="range">051 — 060</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘量昼</h3><span class="card-num">#051</span></div>
+        <p class="card-body">一位天文学家为了观察日食，在阁楼上堆积了厚厚的灰尘，因为他不允许任何人打扰他的观测。当白昼被黑影吞噬时，他准确地记录了时间，并推算出下一次日食的日期。他的数据为后世的历法修订提供了重要依据。</p>
+        <p class="card-note">同行赞叹：“尘量昼，观测入微！天文台的灰尘，都是星辰的见证。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁良轴</h3><span class="card-num">#052</span></div>
+        <p class="card-body">铁路工人在铺设铁轨时，必须趁着天气晴朗，将每一根枕木下的车轴调整到最佳位置。一旦下雨，路基变软，调整就会变得困难重重。工头在工地上扯着嗓子喊道，提醒大家抓紧时间。</p>
+        <p class="card-note">工头喊道：“趁良轴，安全第一！我们修的是铁路，更是人命关天的大事！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔粮轴</h3><span class="card-num">#053</span></div>
+        <p class="card-body">一位暴君在巡视粮仓时，发现运送粮食的车轴断了，粮食撒了一地。他大发雷霆，不仅当场斩了车夫，还要惩治管理粮食的官员。大臣们噤若寒蝉，谁也不敢求情，生怕下一个掉脑袋的就是自己。</p>
+        <p class="card-note">后人叹道：“嗔粮轴，伴君如伴虎！封建暴政，令人胆寒。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">谶良昼</h3><span class="card-num">#054</span></div>
+        <p class="card-body">一位占星师预言，某年某月某日，白昼将出现异象。起初人们都不相信，认为他是妖言惑众。果然，那天日全食发生，天下一片恐慌，人们纷纷跪地祈求上天宽恕。国王因此对他言听计从，奉为国师。</p>
+        <p class="card-note">这就是谶良昼的威力。从此，占星术在古代宫廷中占据了重要地位。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">衬凉轴</h3><span class="card-num">#055</span></div>
+        <p class="card-body">在寒冷的冬夜，机械师为了让车轴不被冻裂，特意用棉布包裹衬垫。尽管环境凉寒，滴水成冰，但车轴依然灵活转动，没有发生任何故障。老板看到后，非常赞赏他的细心和责任心。</p>
+        <p class="card-note">老板赞扬：“衬凉轴，未雨绸缪！如果人人都像你这样用心，工厂何愁不兴旺。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈亮轴</h3><span class="card-num">#056</span></div>
+        <p class="card-body">一百年前，老工匠陈亮打造了一根精钢车轴，传给了他的孙子。虽然表面已经有些生锈，但依然坚不可摧，历经三代人的使用依然完好。邻里乡亲都把这根车轴视作传家宝，赞叹陈氏家族的手艺。</p>
+        <p class="card-note">邻里称赞：“陈亮轴，百年传承！陈家的招牌，果然名不虚传。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉良舟</h3><span class="card-num">#057</span></div>
+        <p class="card-body">清末，一位富商乘坐良舟出海经商，遭遇海盗。海盗索要巨额赎金，否则就要撕票。富商宁死不屈，抱着装满财宝的箱子跳入大海，与财宝一起沉入海底。海盗们目瞪口呆，没想到遇到个硬骨头。</p>
+        <p class="card-note">后人评价：“沉良舟，气节可嘉！宁为玉碎，不为瓦全，真丈夫也。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">层亮轴</h3><span class="card-num">#058</span></div>
+        <p class="card-body">科研人员在研究新型材料时，发现了一层发光轴，只要通电就能发出不同颜色的光。这项发明彻底改变了照明行业，让人类告别了传统的白炽灯。研究人员在实验室里欢呼雀跃。</p>
+        <p class="card-note">人们欢呼：“层亮轴，照亮未来！科技改变生活，创新引领时代。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁凉昼</h3><span class="card-num">#059</span></div>
+        <p class="card-body">秋分时节，农夫趁着早晚凉快、白昼时间还足够长，加紧收割庄稼。他一边割麦一边唱着山歌，脸上洋溢着丰收的喜悦。金黄色的麦田在阳光下翻滚，构成了一幅美丽的田园画卷。</p>
+        <p class="card-note">他唱道：“趁凉昼，秋收万颗子！四海无闲田，农夫犹饿死，那是旧社会了！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘粮粥</h3><span class="card-num">#060</span></div>
+        <p class="card-body">灾荒年间，慈善家开设粥棚。由于风沙大，粥里常常落了灰尘，看起来脏兮兮的。但他依然坚持施粥，救活了无数濒临饿死的灾民。灾民们为了活命，根本不在乎这些灰尘。</p>
+        <p class="card-note">百姓感恩：“尘粮粥，活命之恩！滴水之恩当涌泉相报，何况救命之恩。”</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷七 ============ -->
+    <div class="volume-head" id="vol-7">
+      <h2>卷 七</h2><span class="range">061 — 070</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈两轴</h3><span class="card-num">#061</span></div>
+        <p class="card-body">一辆古老的马车，两侧各有一根陈年的车轴。虽然外表斑驳，满是岁月的痕迹，但走起山路来依然稳当，从不掉链子。车夫赶着这辆马车走南闯北，赚了不少钱，对这辆老伙计充满了感情。</p>
+        <p class="card-note">车夫说：“陈两轴，老当益壮！新东西不一定好，老物件才最懂你的脾气。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣凉昼</h3><span class="card-num">#062</span></div>
+        <p class="card-body">被贬谪的忠臣，在寒凉的清晨，看着渐渐亮起的白昼，心中仍然想着国家的安危。他站在窗前，任凭冷风吹拂，脑海中不断思索着如何改革弊政，拯救黎民百姓于水火之中。</p>
+        <p class="card-note">他提笔写道：“臣凉昼，处江湖之远则忧其君。”这份爱国之心，令人敬佩。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁亮轴</h3><span class="card-num">#063</span></div>
+        <p class="card-body">钟表匠在修理古董钟表时，必须趁着光线最明亮的时刻，调整最微小的轴心。他戴着放大镜，屏住呼吸，双手稳如泰山。哪怕是一根头发的误差，都会导致整个钟表走时不准。</p>
+        <p class="card-note">他常说：“趁亮轴，明察秋毫。修表如修心，容不得半点马虎。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔量舟</h3><span class="card-num">#064</span></div>
+        <p class="card-body">一位暴躁的船老大，总是因为一点小事就责骂船员。一次航行中，他因为量错了船上物资的重量而大发雷霆，甚至动手打人。结果脚下不稳，自己失足落水，差点淹死。船员们虽然救了他，但都在背后偷笑。</p>
+        <p class="card-note">船员们叹息：“嗔量舟，自作自受。脾气太差，迟早要吃亏的。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉梁粥</h3><span class="card-num">#065</span></div>
+        <p class="card-body">古代某地发生地震，房屋倒塌，粮仓的横梁砸落，压坏了许多粮食。人们在废墟中拼命挖掘，终于挖出仅剩的粮食，熬成一锅粥。大家围坐在一起，劫后余生，流着泪分享着这来之不易的食物。</p>
+        <p class="card-note">大家流着泪说：“沉梁粥，劫后余生。活着，比什么都重要。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">衬量昼</h3><span class="card-num">#066</span></div>
+        <p class="card-body">摄影爱好者在逆光拍摄时，需要用反光板衬托，才能量出白昼最完美的曝光度。他反复调整角度，寻找最佳的拍摄时机。当快门按下的那一刻，一张绝美的照片诞生了。</p>
+        <p class="card-note">他感悟：“衬量昼，光影的艺术。摄影不只是记录，更是对美的追求。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨亮昼</h3><span class="card-num">#067</span></div>
+        <p class="card-body">初生的婴儿第一次睁开眼睛，看到清晨明亮的白昼，发出了咯咯的笑声。母亲温柔地抱着他，轻声哼唱着摇篮曲。在这个瞬间，所有的烦恼和疲惫都烟消云散，世界充满了希望。</p>
+        <p class="card-note">母亲温柔地说：“晨亮昼，生命的希望。愿你一生温暖纯良，不舍爱与自由。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘良轴</h3><span class="card-num">#068</span></div>
+        <p class="card-body">一位老匠人从来不打扫他的工作台，认为灰尘能保护工具的良轴不被磨损。听起来荒谬，但他的工具确实用了几十年都没坏，比那些天天擦得锃亮的新工具还要好用。徒弟们百思不得其解。</p>
+        <p class="card-note">徒弟们称奇：“尘良轴，歪打正着。师傅的经验，有时候科学也解释不清。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁良昼</h3><span class="card-num">#069</span></div>
+        <p class="card-body">一位书生趁着良辰美景，在白昼里游历名山大川，写下了无数壮丽的诗篇。他随走随写，将沿途的风景和感悟都记录在纸上。这些诗篇后来被编撰成集，流传千古，成为了文学史上的瑰宝。</p>
+        <p class="card-note">他感叹：“趁良昼，不负韶华。人生得意须尽欢，莫使金樽空对月。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈量舟</h3><span class="card-num">#070</span></div>
+        <p class="card-body">古代造船师陈量，一生都在研究如何精确测量船只的排水量，以确保航行安全。他建造的船只从未发生过沉没事故，成为了航海家们最信赖的造船师。他的测量方法被后人整理成书，流传至今。</p>
+        <p class="card-note">后人纪念他：“陈量舟，航海守护神。千帆过尽，唯他屹立不倒。”</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷八 ============ -->
+    <div class="volume-head" id="vol-8">
+      <h2>卷 八</h2><span class="range">071 — 080</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">层凉粥</h3><span class="card-num">#071</span></div>
+        <p class="card-body">深秋的早晨，一位赶路人走进客栈，点了一碗热粥。但由于天气层层转凉，粥很快就凉了。他一边喝着凉粥，一边看着窗外的落叶，心中涌起一丝凄凉。他感叹，人生就像这碗粥，冷暖自知。</p>
+        <p class="card-note">他笑道：“层凉粥，冷暖自知。天凉好个秋，喝粥也要趁热啊！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔亮轴</h3><span class="card-num">#072</span></div>
+        <p class="card-body">钟表店内，一位顾客因为手表走时不准而对着店主大发雷霆，甚至威胁要砸了店铺。店主没有生气，而是耐心地调整了摆轴，手表恢复了精准。顾客看到店主如此大度，羞愧地低下了头。</p>
+        <p class="card-note">顾客羞愧地说：“嗔亮轴，错怪好人了。老板大度，佩服佩服。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">谶粮轴</h3><span class="card-num">#073</span></div>
+        <p class="card-body">古代一位巫师预言，某地运粮车的轴将会断裂，导致饥荒。当地官员不信，认为他是妖言惑众，将他赶了出去。结果没过多久，运粮车队果然因为车轴断裂，粮食全部倾覆。饥荒如期而至。</p>
+        <p class="card-note">从此，“谶粮轴”成了灵验预言的代名词。官员追悔莫及，却为时已晚。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉亮轴</h3><span class="card-num">#074</span></div>
+        <p class="card-body">矿井塌方，一根发光的合金轴被埋在了地下。几十年后，人们重新开挖这片废弃的矿脉，意外发现了这根依然闪亮的轴。经过检测，它的材质和工艺远超现代水平，成为了博物馆的镇馆之宝。</p>
+        <p class="card-note">工程师感叹：“沉亮轴，不朽的工业奇迹！前人的智慧，我们至今难以企及。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣粮舟</h3><span class="card-num">#075</span></div>
+        <p class="card-body">一位负责漕运的官员，亲自登上运粮船，与船工同吃同住。他发誓，人在粮在，绝不贪污一粒粮食。在他的带领下，船队克服重重困难，成功将粮食运抵京城，解了燃眉之急，拯救了无数百姓。</p>
+        <p class="card-note">他发誓：“臣粮舟，人在粮在！”皇帝感动，亲自出城迎接，赐予他最高荣誉。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁量昼</h3><span class="card-num">#076</span></div>
+        <p class="card-body">建筑工地上，工程师必须趁着白昼光线充足，量取建筑物的各项数据。他严格要求施工队伍，绝不放过一毫米误差。正是这种严谨的态度，让这座建筑历经百年风雨依然屹立不倒。</p>
+        <p class="card-note">他严格要求：“趁量昼，绝不放过一毫米误差！建筑是百年大计，容不得半点侥幸。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔良舟</h3><span class="card-num">#077</span></div>
+        <p class="card-body">一位渔夫责怪他的老伙计——一艘用了多年的良舟，因为今天出海没有捕到鱼。他对着船破口大骂，甚至踢了船板一脚。结果第二天，这艘船在海啸中载着他冲上了高地，救了他的命。</p>
+        <p class="card-note">他懊悔道：“嗔良舟，有眼不识泰山！老伙计，我错怪你了，以后再也不骂你了。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈凉粥</h3><span class="card-num">#078</span></div>
+        <p class="card-body">老北京胡同里，一位大爷每天早晨都要喝一碗陈米熬的凉粥。他说这是祖上传下来的养生秘方，能清热解毒。邻居们都笑他抠门，连新米都舍不得买。结果大爷活到了99岁，身体依然硬朗。</p>
+        <p class="card-note">邻居们纷纷改口：“陈凉粥，养生秘方！老祖宗的智慧，不服不行。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">层亮舟</h3><span class="card-num">#079</span></div>
+        <p class="card-body">夜幕降临，一艘装饰着层层彩灯的画舫在秦淮河上缓缓行驶。灯光映在水面上，如梦如幻。船上的歌女弹奏着琵琶，歌声悠扬婉转。游客们置身其中，仿佛回到了那个繁华的金陵古都。</p>
+        <p class="card-note">游客们惊呼：“层亮舟，美不胜收！此景只应天上有，人间能得几回闻。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘量昼</h3><span class="card-num">#080</span></div>
+        <p class="card-body">一位清洁工在博物馆打扫卫生，发现一幅名画上落满了灰尘，导致画面的白昼部分黯淡无光。他小心翼翼地清理后，画作重放异彩，仿佛获得了新生。馆长看到后，对他竖起了大拇指。</p>
+        <p class="card-note">馆长赞叹：“尘量昼，慧眼识珠！平凡的工作，也能创造不平凡的价值。”</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷九 ============ -->
+    <div class="volume-head" id="vol-9">
+      <h2>卷 九</h2><span class="range">081 — 090</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁凉轴</h3><span class="card-num">#081</span></div>
+        <p class="card-body">机械加工厂里，工人趁着金属刚冷却，立刻进行车轴的精加工。老厂长说：“趁凉轴，趁热打铁的反义词，也是经验之谈。”因为金属在冷却过程中会产生收缩，只有掌握好时机，才能加工出最完美的车轴。</p>
+        <p class="card-note">工人们感叹：“姜还是老的辣，老厂长的经验，比书本上的知识还管用。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">谶良舟</h3><span class="card-num">#082</span></div>
+        <p class="card-body">传说中，有一艘预言中的救世之船，只有品德高尚的人才能登船。当大洪水来临时，无数人想要挤上船，却都被弹开。一位善良的农夫，平时乐于助人，他平静地走上船，船身竟然发出了祥瑞的光芒。</p>
+        <p class="card-note">农夫登上了这艘谶良舟，得以幸存。后人传颂，唯有善良，才是人类最后的方舟。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">衬凉昼</h3><span class="card-num">#083</span></div>
+        <p class="card-body">冬天的早晨，太阳虽然升起，但依然寒冷。人们在屋里生起火炉，火光衬托着窗外清冷的白昼，形成了一种独特的冬日美感。一家人围坐在一起，喝茶聊天，享受着温馨的时光。</p>
+        <p class="card-note">诗人写道：“衬凉昼，红泥小火炉。晚来天欲雪，能饮一杯无？”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈亮粥</h3><span class="card-num">#084</span></div>
+        <p class="card-body">相传陈亮是一位大孝子，家境贫寒时，他把仅剩的米熬成粥给母亲喝，自己只喝米汤，甚至饿得晕倒在田埂上。后来他功成名就，做了大官，仍然保持着喝粥的习惯，时刻提醒自己不要忘本。</p>
+        <p class="card-note">后人赞：“陈亮粥，孝心可鉴。富贵不忘贫贱之交，发达不忘糟糠之妻。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉量轴</h3><span class="card-num">#085</span></div>
+        <p class="card-body">物理实验室里，教授在做重力实验。一个沉重的量轴沉入水底，激起了巨大的水花。学生们围在周围，认真记录着数据。教授借此机会，向学生们讲解了浮力、密度等物理知识。</p>
+        <p class="card-note">学生们感叹：“沉量轴，力拔山兮气盖世！物理的世界，充满了无穷的奥秘。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣亮昼</h3><span class="card-num">#086</span></div>
+        <p class="card-body">古代忠臣在朝堂上冒死进谏，他的忠诚如同照亮白昼的烈日，让奸臣无所遁形。他列举了奸臣的种种罪行，哪怕触怒龙颜，甚至面临满门抄斩的风险，也在所不惜。</p>
+        <p class="card-note">皇帝最终醒悟，赞道：“臣亮昼，忠肝义胆！有卿在，江山社稷稳固如山。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁粮舟</h3><span class="card-num">#087</span></div>
+        <p class="card-body">水灾泛滥，百姓断粮。一位义士趁着夜色，驾驶一艘粮舟冲过激流，将粮食送到了被困的灾民手中。他冒着生命危险，穿梭在洪流之中，成为了灾民眼中的救星。</p>
+        <p class="card-note">人们感激涕零：“趁粮舟，救命菩萨！大恩大德，永世难忘。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔量轴</h3><span class="card-num">#088</span></div>
+        <p class="card-body">实验员在测量精密轴距时，因为数据总是对不上而大发脾气。他怀疑是量具坏了，甚至想把量具砸了。后来发现，是自己忘了把量具归零。他顿时面红耳赤，觉得自己太浮躁了。</p>
+        <p class="card-note">他自嘲：“嗔量轴，心浮气躁。做科研，最忌讳的就是急躁，静下心来才能出成果。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">晨良昼</h3><span class="card-num">#089</span></div>
+        <p class="card-body">早起的鸟儿有虫吃。一位勤奋的学子每天清晨就开始读书，他认为清晨是一天中最美好的白昼，空气清新，头脑清醒。他坚持了十年，最终考上了理想的大学，改变了自己的命运。</p>
+        <p class="card-note">他常说：“晨良昼，一寸光阴一寸金。莫等闲，白了少年头，空悲切。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘梁粥</h3><span class="card-num">#090</span></div>
+        <p class="card-body">古庙里，老和尚在打扫房梁时，灰尘落进了正在熬制的粥里。小和尚说粥脏了不能吃。老和尚却平静地说：“尘梁粥，心中有佛，万物皆净。”他毫不犹豫地喝下了那碗粥，脸上露出了安详的笑容。</p>
+        <p class="card-note">小和尚似懂非懂，但老和尚的言行，却成了他一生参悟的禅机。</p>
+      </article>
+
+    </div>
+
+    <!-- ============ 卷十 ============ -->
+    <div class="volume-head" id="vol-10">
+      <h2>卷 十</h2><span class="range">091 — 100</span><span class="line"></span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">层凉轴</h3><span class="card-num">#091</span></div>
+        <p class="card-body">在极寒的南北极，科考队发现了一种特殊的地质结构，里面有一层层晶莹剔透的冰轴，仿佛是大自然的艺术品。科学家们惊叹不已，纷纷拍照记录。这些冰轴记录了地球千万年来的气候变化。</p>
+        <p class="card-note">科学家惊叹：“层凉轴，大自然的鬼斧神工！地球的历史，都藏在这些冰层里。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁亮昼</h3><span class="card-num">#092</span></div>
+        <p class="card-body">摄影师为了捕捉昙花一现的美景，趁着白昼光线最好的时候，架好相机耐心等待。他在花丛中蹲守了几个小时，一动不动。当花开的那一刻，他按下了快门，定格了这绝美的瞬间。</p>
+        <p class="card-note">他说：“趁亮昼，定格美好。美的瞬间转瞬即逝，只有耐心的人才能捕捉到。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">谶量粥</h3><span class="card-num">#093</span></div>
+        <p class="card-body">古代巫师通过观察粥面上的纹路，来预测未来的吉凶。如果他量出的粥纹成祥瑞之兆，就会告诉国王。国王对此深信不疑，每次出征前都要请他来占卜一番。这就是谶量粥的由来。</p>
+        <p class="card-note">虽然现在看来是迷信，但在古代，这却是稳定人心的一种手段。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">沉梁轴</h3><span class="card-num">#094</span></div>
+        <p class="card-body">一艘百年沉船被打捞出水，船舱底部的梁轴依然完好。历史学家惊叹于古人的造船工艺，将其陈列在博物馆中，命名为“沉梁轴”。这艘沉船见证了大航海时代的辉煌与残酷。</p>
+        <p class="card-note">游客们驻足观看，仿佛能听到海浪的声音，感受到历史的厚重。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">臣亮舟</h3><span class="card-num">#095</span></div>
+        <p class="card-body">一位大臣为了向皇帝表忠心，特意打造了一艘名为“亮舟”的宝船献给朝廷。船上挂满了灯笼，日夜通明，象征着大明朝的繁荣昌盛。皇帝大喜，重赏了他，并将这艘船作为皇家游船。</p>
+        <p class="card-note">臣子们纷纷附和：“臣亮舟，象征国泰民安，圣上英明！”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">尘两粥</h3><span class="card-num">#096</span></div>
+        <p class="card-body">穷书生每天只能吃两顿带有灰尘的粗粥，但他不以为苦，反而以苦作乐。他在墙上写道：“尘两粥，亦能饱腹，亦能明志。”他将这份苦难化作了学习的动力，最终考取了功名。</p>
+        <p class="card-note">他的故事激励了无数寒门学子，告诉他们：贫穷不可怕，可怕的是失去斗志。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">趁良量</h3><span class="card-num">#097</span></div>
+        <p class="card-body">商人趁行情好，大量收购粮食。他亲自用标准的量斗去量取，确保公平交易。哪怕忙碌到深夜，他也绝不缺斤少两。他的信誉因此大增，成为了当地的首富。</p>
+        <p class="card-note">人称“趁良量”。人们常说：“做生意，信誉第一。有了信誉，财富自然来。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">嗔凉昼</h3><span class="card-num">#098</span></div>
+        <p class="card-body">一位患有抑郁症的诗人，总是抱怨白昼太冷清、太漫长。他觉得世界充满了灰暗，找不到活下去的意义。直到有一天，他遇到了一个像阳光一样温暖的女孩，从此他的世界亮了。</p>
+        <p class="card-note">他写道：“嗔凉昼，唯你解千愁。你是我生命中的光，照亮了我前行的路。”</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈量粥</h3><span class="card-num">#099</span></div>
+        <p class="card-body">老字号粥铺的掌柜，坚持用最精准的量具，最古老的陈米，熬制出最地道的粥。他常说：“陈量粥，规矩不能坏。”这家店传承了三百年，经历了无数朝代更迭，却始终屹立不倒。</p>
+        <p class="card-note">因为这里面不仅有一碗粥，更有一份坚守和传承。</p>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><h3 class="card-title">陈亮舟</h3><span class="card-num">#100</span></div>
+        <p class="card-body">最后，让我们回到原点。陈亮舟者，闽人也，号小粉兔。</p>
+        <p class="card-note">正如“太史公”所言：“若舟能敛锋芒、修内省，则传奇宗师之业，可期矣。”而这百篇谐音，便是对他最好的致敬。</p>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- ============ 页脚 ============ -->
+  <footer>
+    <p class="f-title">《粉兔本纪 · 陈亮舟编》</p>
+    <p>作者：立花廿七　｜　排版：GitHub Pages</p>
+    <p>永远年轻，永远热泪盈眶，永远 <span class="f-tag">Always continue; Never break;</span></p>
+  </footer>
+
+</div>
+
+<button id="toTop" aria-label="回到顶部">↑</button>
+
+<script>
+  (function () {
+    var btn = document.getElementById('toTop');
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('show', window.scrollY > 600);
+    }, { passive: true });
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+</body>
+</html>
